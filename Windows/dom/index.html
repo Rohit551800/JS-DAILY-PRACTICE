@@ -23,25 +23,34 @@
 
       //child node and parent node
 
-      // let headChild = headElement.childNodes; //display complete structure i.e return node list(DOM TREE DATA);
-      // let bodyChild = bodyElement.childNodes; //display complete structure i.e return node list(DOM TREE DATA);
-      let headChild = headElement.children; //return only the collection of elements
-      let bodyChild = bodyElement.children; //return only the collection of elements
+      let headChild = headElement.childNodes; //display complete structure i.e return node list(DOM TREE DATA);
+      let bodyChild = bodyElement.childNodes; //display complete structure i.e return node list(DOM TREE DATA);
+      // let headChild = headElement.children; //return only the collection of elements
+      // let bodyChild = bodyElement.children; //return only the collection of elements
       // console.log(headChild);
       // console.log(bodyChild);
 
-      // let headFirstChild = headElement.firstElementChild;
-      // let bodyFirstChild = bodyElement.firstElementChild;
+      let headFirstChild = headElement.firstElementChild;
+      let bodyFirstChild = bodyElement.firstElementChild;
       // console.log(headFirstChild);
       // console.log(bodyFirstChild);
 
 
-      let headLastChild = headElement.lastElementChild;
-      let bodyLastChild = bodyElement.lastElementChild;
+      let lastChild = bodyElement.lastChild;
 
 
       // console.log(headLastChild);
-      // console.log(bodyLastChild);
+      // console.log(lastChild);
+
+
+      let nextSibling = bodyFirstChild.nextElementSibling;
+      let prevSibling = nextSibling.previousElementSibling;
+
+      console.log(nextSibling);
+      console.log(prevSibling);
+
+      // let parentNode = nextSibling.parentElement;
+      // console.log(parentNode);                         body = parent
 
     </script>
   </body>
