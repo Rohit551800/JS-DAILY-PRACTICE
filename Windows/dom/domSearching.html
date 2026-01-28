@@ -32,7 +32,7 @@ querySelectorAll(selector) -->
       <h1 id="heading">DOM API</h1>
       <ul class="list-of--nodes">
         <li>1 node</li>
-        <li>2 node</li>
+        <li>2 node</li> 
         <li>3 node</li>
         <!-- <li>4th node </li> -->
         <li>4 node</li>
@@ -46,43 +46,22 @@ querySelectorAll(selector) -->
       <div class="value"></div>
     </div>
     <script>
-      let findElementById = document.getElementById("heading");
-      // let findElementById = document.getElementById("#heading"); ❌
-      const findElementByClassName =
-        document.getElementsByClassName("list-of--nodes");
+      let findElementById = document.getElementById("heading"); //method used to access the html element using class
+      // console.log(findElementById);
+      // console.log(findElementById.innerHTML); // gives the same output as the internal data of html // output:DOM API
+      // console.log(findElementById.textContent); // gives the same output as the internal data of html // output:DOM API
+      // console.log(findElementById.innerText); // gives the same output as the internal data of html // output:DOM API
 
-      // console.log(...findElementByClassName);
 
-      // for (let elem of findElementByClassName) {
-      //   console.log(elem.innerHTML);
-      //   console.log(elem.innerText);
-      //   console.log(elem.textContent);
-      // }
 
-      // console.log(findElementById.innerHTML);
-      // console.log(findElementById.innerText);
-      // console.log(findElementById.textContent);
+      let findElementByClass = document.getElementsByClassName("list-of--nodes"); //method used to access the class element using class
+      // console.log(findElementByClass); //gives the html collection and is itterable
 
-      // The `innerHTML` property returns the complete content, including all HTML tags, inside the `ul` elements and their text content.
-
-      // Example using `innerText`: Prints text as it appears on screen, considering styling and excluding hidden text.
-
-      // Example using `textContent`: Prints text as it is in the markup, including hidden text and without considering styling.
-
-      // const getElementsByTagName = document.getElementsByTagName("li");
-      // // console.log(getElementsByTagName);
-      // // console.log(...getElementsByTagName);
-      // for (let name of getElementsByTagName) {
-      //   console.log(name);
-      // }
-      // const findElementByQuerySelector = document.querySelector("#heading");
-      // console.log(
-      //   (findElementByQuerySelector.innerText = "World Best JS Course")
-      // );
-
-      const findElementByQuerySelectorAll = document.querySelectorAll("li");
-      console.log(findElementByQuerySelectorAll);
-      findElementByQuerySelectorAll.forEach((curElem) => console.log(curElem));
+      // console.log(... findElementByClass);
+             //or
+          for(let item of findElementByClass){
+            console.log(item.innerHTML); //bcoz itterable hai toh each li->andr ->ke html ko access krne ka method hai ye
+          }
     </script>
   </body>
 </html>
