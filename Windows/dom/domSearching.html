@@ -59,9 +59,37 @@ querySelectorAll(selector) -->
 
       // console.log(... findElementByClass);
              //or
-          for(let item of findElementByClass){
-            console.log(item.innerHTML); //bcoz itterable hai toh each li->andr ->ke html ko access krne ka method hai ye
-          }
+          // for(let item of findElementByClass){
+          //   console.log(item.innerHTML); //bcoz itterable hai toh each li->andr ->ke html ko access krne ka method hai ye
+          //   console.log(item.innerText);
+          //   console.log(item.textContent);
+          // }
+
+
+          //----------->>innerHtml -> isse hame tags and content dikhta hai
+          //----------->>innerText -> isse hame only inside ka data dikhta hai
+          //----------->>textContent -> isme css apply nahi hota hai mtlb sb diplay hoga even after using display : none;
+
+
+          //-------------->>accessing elements by tag-name(also requires to use loop)
+      // let getElementsByTagName = document.getElementsByTagName("li");
+      // console.log(getElementsByTagName);
+      // for(let item of getElementsByTagName){
+      //   console.log(item);
+      // }
+
+ 
+
+
+
+
+      //querySelector(selector);
+      // const findElementByquerySelector = document.querySelector("#heading")
+      const findElementByquerySelector = document.querySelector("li")
+      // console.log(findElementByquerySelector.innerHTML = "World best Js Course");
+      const findElementByQuerySelectorAll = document.querySelectorAll("li");
+      console.log(findElementByQuerySelectorAll);
+      console.log(findElementByquerySelector)
     </script>
   </body>
 </html>

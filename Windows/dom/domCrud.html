@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <title>DOm Crud</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;800&display=swap"
       rel="stylesheet"
@@ -19,38 +19,40 @@
   </head>
   <!-- it's a comment node  -->
   <body>
-    <div>
-      <h1>Simple DOM Todo App</h1>
-      <input type="text" id="inputField" />
-      <button class="btn">click me</button>
-      <div class="todoListsElem"></div>
-    </div>
+      <div>
+        <h1>Simple DOM Todo App</h1>
+        <input type="text" id="input-field">
+        <button class = "btn">Click me</button>
+        <div class="todoListsElem">
+        </div>
+      </div>
     <script>
-      let inputElem = document.getElementById("inputField");
+      let inputElem = document.getElementById("input-field");
+      // let todoFirst = document.getElementById("todoFirst")
       let clickBtn = document.querySelector(".btn");
       let todoElem = document.querySelector(".todoListsElem");
-      // let todoFirst = document.getElementById("todoFirst");
 
       const addTodo = () => {
         console.log(inputElem.value);
         // todoFirst.textContent = inputElem.value;
+        //creating a new element using createElement
         let pElem = document.createElement("p");
         pElem.textContent = inputElem.value;
         console.log(pElem);
-        todoElem.append(pElem);
-
-        inputElem.value = "";
-      };
-
-      clickBtn.addEventListener("click", () => {
+        todoElem.append(pElem); // new data ko in add krta rhega and purana remove b nahi hoga
+        inputElem.value = null; // input element se data remove ho jaega click hone k baad
+      }
+      clickBtn.addEventListener('click' , () => {
         addTodo();
       });
 
-      todoElem.addEventListener("click", (event) => {
+      todoElem.addEventListener('click' , (event) => {
         console.log(event.target);
-        let currentElem = event.target;
-        currentElem.remove();
+        let currElem = event.target;
+        currElem.remove(); //remove the elemet on clicking
       });
+      // console.log(inputElem.innerText);
+      // console.log(clickBtn);
     </script>
   </body>
 </html>
