@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript String Notes - Handwritten Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            font-family: 'Caveat', cursive;
+            min-height: 100vh;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page {
+            background: linear-gradient(to bottom, 
+                transparent 0px, 
+                transparent 31px, 
+                #e8e8e8 31px, 
+                #e8e8e8 32px, 
+                transparent 32px), 
+                white;
+            background-size: 100% 32px;
+            padding: 50px 60px 50px 80px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+            border-radius: 5px;
+            line-height: 32px;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ffb6c1;
+        }
+
+        .hole {
+            position: absolute;
+            left: 20px;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #ddd 0%, #fff 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hole:nth-child(1) { top: 80px; }
+        .hole:nth-child(2) { top: 50%; }
+        .hole:nth-child(3) { bottom: 80px; }
+
+        h1 {
+            color: #2563eb;
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: underline;
+            text-decoration-color: #2563eb;
+            text-decoration-thickness: 3px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #dc2626;
+            font-size: 34px;
+            margin: 25px 0 15px 0;
+            text-decoration: underline;
+            text-decoration-color: #dc2626;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #059669;
+            font-size: 28px;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .code {
+            color: #1e40af;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 22px;
+            line-height: 30px;
+            margin: 8px 0;
+            padding-left: 15px;
+        }
+
+        .comment {
+            color: #16a34a;
+            font-style: italic;
+        }
+
+        .output {
+            color: #7c3aed;
+            font-weight: 600;
+        }
+
+        .keyword {
+            text-decoration: underline;
+            text-decoration-color: #dc2626;
+            font-weight: 600;
+        }
+
+        .arrow {
+            color: #ea580c;
+            font-weight: 700;
+        }
+
+        .box {
+            border: 2px solid #2563eb;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .syntax {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-family: 'Indie Flower', cursive;
+            font-size: 24px;
+        }
+
+        .note {
+            background: #dbeafe;
+            border-left: 4px solid #2563eb;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        .important {
+            background: #fee2e2;
+            border: 2px dashed #dc2626;
+            padding: 10px;
+            margin: 12px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .separator {
+            border-bottom: 2px dashed #94a3b8;
+            margin: 20px 0;
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        li {
+            font-size: 24px;
+            margin: 8px 0;
+            color: #1e293b;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            color: #64748b;
+            font-size: 20px;
+        }
+
+        .table {
+            border: 2px solid #2563eb;
+            padding: 10px;
+            margin: 15px 0;
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid #94a3b8;
+            padding: 5px 0;
+            font-size: 22px;
+        }
+
+        .table-header {
+            font-weight: 700;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        
+        <!-- Page 1 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Strings in JavaScript</h1>
+            
+            <div class="note">
+                Strings can be created by single or double quotes<br>
+                • Single quotes <span class="arrow">→</span> used with single character<br>
+                • Double quotes <span class="arrow">→</span> used with multiple characters
+            </div>
+            
+            <h2>Topics Covered:</h2>
+            <div class="box">
+                1. String & its properties<br>
+                2. Escape Character<br>
+                3. String Search Methods<br>
+                4. Extracting String Parts<br>
+                5. Extracting String Characters<br>
+                6. Replacing String Content<br>
+                7. Other useful Methods
+            </div>
+            
+            <div class="important">
+                <span class="keyword">Indexing:</span> 0 to string.length - 1
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>String Length</h2>
+            
+            <div class="box">
+                <span class="keyword">String_name.length</span> is used to get the total length of a string<br>
+                <span class="note">Space is also calculated as length</span>
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">let str = "Hellow world";</div>
+            <div class="code">console.log(str.length);</div>
+            <div class="output">// Output: 12</div>
+            
+            <div class="page-number">1</div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Escape Character</h1>
+            
+            <div class="important">
+                " \" only slash is used as escape character<br>
+                Use \ before the character you want to escape
+            </div>
+            
+            <div class="table">
+                <div class="table-row table-header">
+                    <div>Description</div>
+                    <div>Code</div>
+                    <div>Result</div>
+                </div>
+                <div class="table-row">
+                    <div>Single quote</div>
+                    <div>\'</div>
+                    <div>'</div>
+                </div>
+                <div class="table-row">
+                    <div>Double quote</div>
+                    <div>\"</div>
+                    <div>"</div>
+                </div>
+                <div class="table-row">
+                    <div>Slash</div>
+                    <div>\\</div>
+                    <div>\</div>
+                </div>
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">let str = "This is Rohit\'s \"Welcome myself\" book";</div>
+            <div class="code">console.log(str);</div>
+            
+            <div class="separator"></div>
+            
+            <h1>String Searching</h1>
+            
+            <h2>1. indexOf()</h2>
+            <div class="box">
+                Returns the <span class="keyword">first occurrence</span> of the string in a string<br>
+                Returns <span class="keyword">-1</span> if not present<br>
+                <span class="important">Strings are CASE SENSITIVE</span>
+            </div>
+            
+            <div class="code">console.log(string.indexOf('Singh'));</div>
+            
+            <div class="page-number">2</div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>Converting String into Array</h2>
+            
+            <div class="code">let string = "Rohit Singh Gouria";</div>
+            <div class="code">let str = Array.from(string);</div>
+            <div class="code">console.log(str);</div>
+            
+            <h3>Storing and printing string elements with indices:</h3>
+            <div class="code">const strMap = str.map((curElem, index) => {</div>
+            <div class="code">&nbsp;&nbsp;return `${curElem} - ${index}`;</div>
+            <div class="code">});</div>
+            <div class="code">console.log(strMap);</div>
+            
+            <div class="separator"></div>
+            
+            <h2>2. lastIndexOf()</h2>
+            
+            <div class="code">let str = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(str.length);</div>
+            <div class="code">console.log(str.lastIndexOf("JavaScript", 40));</div>
+            
+            <div class="note">
+                40 dalne k baad backward direction mai move karega and last character ko find karega<br>
+                <span class="output">Output: 6</span>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>3. search()</h2>
+            
+            <div class="box">
+                Search the string from starting<br>
+                If found <span class="arrow">→</span> return index number<br>
+                Else <span class="arrow">→</span> return -1<br>
+                <span class="keyword">Best thing:</span> Can use <span class="keyword">REGEX</span>
+            </div>
+            
+            <div class="page-number">3</div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Regex: Case-sensitive characters can be accessed</h3>
+            
+            <div class="syntax">
+                Syntax: string_name.search(/string_to_be_check/i);
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">let str = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(str.search(/JavaScript/i));</div>
+            
+            <div class="separator"></div>
+            
+            <h2>4. match()</h2>
+            
+            <div class="code">let str = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code"></div>
+            <div class="code">console.log(str.match("Javascript")); <span class="comment">// null (case-sensitive)</span></div>
+            <div class="code">console.log(str.match("JavaScript")); <span class="comment">// returns data</span></div>
+            
+            <div class="note">Returns data in array format:</div>
+            <div class="code">[</div>
+            <div class="code">&nbsp;&nbsp;'JavaScript',</div>
+            <div class="code">&nbsp;&nbsp;index: 6,</div>
+            <div class="code">&nbsp;&nbsp;input: 'Hello JavaScript, welcome to out world...',</div>
+            <div class="code">&nbsp;&nbsp;groups: undefined</div>
+            <div class="code">]</div>
+            
+            <div class="important">
+                Behind the scene: match() converts "JavaScript" to regular expression<br>
+                i.e., /JavaScript/i at global level
+            </div>
+            
+            <div class="page-number">4</div>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>To get number of occurrences:</h3>
+            <div class="code">console.log(str.match(/JavaScript/g)); <span class="comment">// matches at global level</span></div>
+            <div class="output">// Output: ['JavaScript', 'JavaScript']</div>
+            
+            <div class="separator"></div>
+            
+            <h2>5. matchAll()</h2>
+            
+            <div class="box">
+                Returns an <span class="keyword">iterator</span> of all matches<br>
+                Provides detailed information about each match<br>
+                Returns empty iterator if no match found
+            </div>
+            
+            <div class="code">let str = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(str.matchAll("Javascript")); <span class="comment">// no result</span></div>
+            <div class="output">// Output: Object [RegExp String Iterator] {}</div>
+            
+            <div class="note">
+                matchAll() converts string to regular expression at global level<br>
+                i.e., string_name.matchAll(/Pattern/g);
+            </div>
+            
+            <div class="code">let result = str.matchAll("JavaScript");</div>
+            
+            <div class="important">
+                Provides output as iterator <span class="arrow">→</span> Need to use loop to get values<br>
+                • Loops can be used<br>
+                • Spread operator can be used
+            </div>
+            
+            <div class="page-number">5</div>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Using For Loop:</h3>
+            <div class="code">for(let i of result) {</div>
+            <div class="code">&nbsp;&nbsp;console.log(i); <span class="comment">// console.log(i[0]); for 1st value</span></div>
+            <div class="code">}</div>
+            
+            <h3>Using Spread Operator:</h3>
+            <div class="code">console.log(...result);</div>
+            
+            <div class="note">Output:</div>
+            <div class="code">[</div>
+            <div class="code">&nbsp;&nbsp;'JavaScript',</div>
+            <div class="code">&nbsp;&nbsp;index: 6,</div>
+            <div class="code">&nbsp;&nbsp;input: 'Hello JavaScript, welcome to out world...',</div>
+            <div class="code">&nbsp;&nbsp;groups: undefined</div>
+            <div class="code">]</div>
+            <div class="code">[</div>
+            <div class="code">&nbsp;&nbsp;'JavaScript',</div>
+            <div class="code">&nbsp;&nbsp;index: 45,</div>
+            <div class="code">&nbsp;&nbsp;input: 'Hello JavaScript, welcome to out world...',</div>
+            <div class="code">&nbsp;&nbsp;groups: undefined</div>
+            <div class="code">]</div>
+            
+            <div class="separator"></div>
+            
+            <h2>includes()</h2>
+            
+            <div class="box">
+                Returns <span class="keyword">true</span> or <span class="keyword">false</span><br>
+                Regular expression <span class="keyword">CANNOT</span> be used
+            </div>
+            
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">let includeResult = text.includes("JavaScript");</div>
+            <div class="code">console.log(includeResult); <span class="output">// true</span></div>
+            
+            <div class="page-number">6</div>
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>startsWith()</h2>
+            
+            <div class="box">Returns <span class="keyword">true</span> or <span class="keyword">false</span></div>
+            
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(text.startsWith("Hello JavaScript"));</div>
+            <div class="output">// Output: true</div>
+            
+            <div class="separator"></div>
+            
+            <h2>endsWith()</h2>
+            
+            <div class="box">Returns <span class="keyword">true</span> or <span class="keyword">false</span></div>
+            
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(text.endsWith("urse"));</div>
+            <div class="output">// Output: true</div>
+            
+            <div class="separator"></div>
+            
+            <h1>String Extraction</h1>
+            
+            <h2>slice()</h2>
+            
+            <div class="box">
+                Extracts a part of a string<br>
+                Returns the extracted part in a <span class="keyword">new string</span>
+            </div>
+            
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(text.slice(6, 17));</div>
+            <div class="output">// Output: JavaScript</div>
+            
+            <div class="page-number">7</div>
+        </div>
+
+        <!-- Page 8 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>substring()</h2>
+            
+            <div class="important">
+                <span class="keyword">DEPRECATED</span><br>
+                Extracts a portion of string based on starting and ending indices<br>
+                Same as slice()
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>replace()</h2>
+            
+            <div class="box">
+                Used to replace the string with any value<br>
+                <span class="keyword">Regex can be used</span>
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(text.replace("H", "Rohit"));</div>
+            
+            <div class="note">
+                Agar har jagah element ki occurrence ko change krna hai toh<br>
+                <span class="keyword">replaceAll()</span> is used
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">console.log(text.replaceAll("JavaScript", "Rohit"));</div>
+            
+            <div class="separator"></div>
+            
+            <h1>Extracting String Characters</h1>
+            
+            <h2>charAt()</h2>
+            
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(text.charAt(4));</div>
+            <div class="output">// Output: "o"</div>
+            <div class="note">If didn't get any value, returns empty string</div>
+            
+            <div class="page-number">8</div>
+        </div>
+
+        <!-- Page 9 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>charCodeAt()</h2>
+            
+            <div class="box">Returns <span class="keyword">ASCII value</span> of character</div>
+            
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(text.charCodeAt(7));</div>
+            <div class="output">// Output: 97 (ASCII value of 'a')</div>
+            
+            <div class="separator"></div>
+            
+            <h2>at()</h2>
+            
+            <div class="box">
+                On <span class="keyword">negative value</span>, indexing starts from right side<br>
+                From -1 to -n
+            </div>
+            
+            <div class="code">let text = "Hello JavaScript, welcome to out world best JavaScript course";</div>
+            <div class="code">console.log(text.at(-2));</div>
+            
+            <div class="separator"></div>
+            
+            <h2>trim()</h2>
+            
+            <div class="box">Used to remove <span class="keyword">extra space</span> from the string</div>
+            
+            <div class="code">let text = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hello, world&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";</div>
+            <div class="code">let result = console.log(text.trim());</div>
+            
+            <div class="separator"></div>
+            
+            <h2>split(), reverse(), join()</h2>
+            
+            <div class="note">
+                <span class="keyword">split()</span> <span class="arrow">→</span> Converts string to array<br>
+                <span class="keyword">reverse()</span> <span class="arrow">→</span> Reverses the array<br>
+                <span class="keyword">join()</span> <span class="arrow">→</span> Converts array back to string
+            </div>
+            
+            <div class="page-number">9</div>
+        </div>
+
+        <!-- Page 10 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Interview Questions</h1>
+            
+            <h2>Q1: Print a to z alphabets</h2>
+            
+            <div class="code">const result1 = () => {</div>
+            <div class="code">&nbsp;&nbsp;for(let i = 97; i <= 122; i++) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;console.log(String.fromCharCode(i));</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">}</div>
+            <div class="code">result1();</div>
+            
+            <div class="separator"></div>
+            
+            <h2>Q2: Count number of vowels in a string</h2>
+            
+            <div class="code">const result2 = (s) => {</div>
+            <div class="code">&nbsp;&nbsp;let vowels = 'aeiou';</div>
+            <div class="code">&nbsp;&nbsp;let counter = 0;</div>
+            <div class="code">&nbsp;&nbsp;for(let i of s) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;if(vowels.includes(i)) counter++;</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;return counter;</div>
+            <div class="code">}</div>
+            <div class="code"></div>
+            <div class="code">console.log(result2("abcdefghijklmnopqrstuvwxwzaaaaaa"));</div>
+            
+            <div class="page-number">10</div>
+        </div>
+
+        <!-- Page 11 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>Q3: Check if all vowels present in string</h2>
+            
+            <div class="code">const result3 = (s) => {</div>
+            <div class="code">&nbsp;&nbsp;let vowels = "aeiou";</div>
+            <div class="code">&nbsp;&nbsp;for(let i of vowels) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;if(!s.includes(i)) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;return true;</div>
+            <div class="code">}</div>
+            <div class="code">console.log(result3("a b c e i o y u"));</div>
+            
+            <div class="separator"></div>
+            
+            <h2>Q4: Check if string is Pangram</h2>
+            
+            <div class="important">
+                String: "the quick brown fox jumps over the lazy dog"<br>
+                Pangram = Contains all 26 letters of alphabet
+            </div>
+            
+            <h3>Method 1: Using Loop</h3>
+            <div class="code">const result = (str) => {</div>
+            <div class="code">&nbsp;&nbsp;let totalChar = "";</div>
+            <div class="code">&nbsp;&nbsp;for(let i = 97; i <= 122; i++) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;totalChar += String.fromCharCode(i);</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;console.log(totalChar);</div>
+            <div class="code">&nbsp;&nbsp;for(let i of str) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;if(i != " " && !totalChar.includes(i)) return false;</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;return true;</div>
+            <div class="code">}</div>
+            
+            <div class="page-number">11</div>
+        </div>
+
+        <!-- Page 12 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Method 2: Using Set (Better Solution)</h3>
+            
+            <div class="code">const result = (str) => {</div>
+            <div class="code">&nbsp;&nbsp;const set = new Set();</div>
+            <div class="code">&nbsp;&nbsp;for(let i of str.toLowerCase()) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;if(i >= 'a' && i <= 'z') {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set.add(i);</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;return set.size === 26;</div>
+            <div class="code">}</div>
+            <div class="code"></div>
+            <div class="code">console.log(result("the quick brown fox jumps over the lazy dog"));</div>
+            
+            <div class="separator"></div>
+            
+            <h1>Key Points for Exams</h1>
+            
+            <div class="important">
+                <span class="arrow">★</span> Important Methods:<br>
+                • indexOf() <span class="arrow">→</span> first occurrence<br>
+                • lastIndexOf() <span class="arrow">→</span> last occurrence<br>
+                • includes() <span class="arrow">→</span> true/false (no regex)<br>
+                • search() <span class="arrow">→</span> can use regex<br>
+                • match() <span class="arrow">→</span> returns array<br>
+                • matchAll() <span class="arrow">→</span> returns iterator<br>
+                • slice() <span class="arrow">→</span> extracts part<br>
+                • replace()/replaceAll() <span class="arrow">→</span> replace strings<br>
+                • charAt() <span class="arrow">→</span> character at index<br>
+                • charCodeAt() <span class="arrow">→</span> ASCII value<br>
+                • trim() <span class="arrow">→</span> removes spaces<br>
+                • split() <span class="arrow">→</span> string to array
+            </div>
+            
+            <div class="page-number">12</div>
+        </div>
+
+        <!-- Page 13 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Summary & Quick Reference</h1>
+            
+            <div class="box">
+                <h3>String Creation:</h3>
+                <div class="code">let str = "Hello";</div>
+                <div class="code">let str2 = 'World';</div>
+            </div>
+            
+            <div class="box">
+                <h3>Escape Characters:</h3>
+                <div class="code">\' <span class="arrow">→</span> single quote</div>
+                <div class="code">\" <span class="arrow">→</span> double quote</div>
+                <div class="code">\\ <span class="arrow">→</span> backslash</div>
+            </div>
+            
+            <div class="box">
+                <h3>Searching:</h3>
+                <div class="code">indexOf()</div>
+                <div class="code">lastIndexOf()</div>
+                <div class="code">search() <span class="comment">// with regex</span></div>
+                <div class="code">match() <span class="comment">// returns array</span></div>
+                <div class="code">matchAll() <span class="comment">// returns iterator</span></div>
+                <div class="code">includes() <span class="comment">// true/false</span></div>
+                <div class="code">startsWith() <span class="comment">// true/false</span></div>
+                <div class="code">endsWith() <span class="comment">// true/false</span></div>
+            </div>
+            
+            <div class="box">
+                <h3>Extraction:</h3>
+                <div class="code">slice(start, end)</div>
+                <div class="code">charAt(index)</div>
+                <div class="code">charCodeAt(index)</div>
+                <div class="code">at(index) <span class="comment">// supports negative</span></div>
+            </div>
+            
+            <div class="box">
+                <h3>Modification:</h3>
+                <div class="code">replace(old, new)</div>
+                <div class="code">replaceAll(old, new)</div>
+                <div class="code">trim() <span class="comment">// remove spaces</span></div>
+            </div>
+            
+            <div class="note">
+                <span class="keyword">Remember:</span> Strings are immutable in JavaScript!<br>
+                All methods return new strings, original remains unchanged.
+            </div>
+            
+            <div class="page-number">13</div>
+        </div>
+
+    </div>
+</body>
+</html>
