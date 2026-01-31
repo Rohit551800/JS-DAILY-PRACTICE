@@ -100,3 +100,34 @@ var result = function (s){
 }
 
 console.log("Reverse of the given string is :"+result("ROHIT"));
+
+
+
+
+//In EcmaScript 2015 includes 
+
+//Arrow function
+
+// const sum = (a , b) => `Sum of ${a} and ${b} = ${a + b}`;
+// console.log(sum(5,6));
+
+//Note:
+//agr ek expression mai funtion body khtm hoo rahi hai toh {} braces ko use krne ki need nahi hai like if-else mai
+//eg
+// const sum = (a , b) => `Sum of ${a} and ${b} = ${a + b}`;
+// console.log(sum(5,6));
+
+
+//agr ek hi parameter hai toh () use krne ki need nahi hai around the parameters
+//eg
+// const square = a => `Square of ${a} = ${a * a}`;
+
+// console.log(square(5));
+
+
+//agr ek b paranthesis nahi hai toh () use krte hai
+//eg
+
+// const greet = () => console.log("Hello world");
+
+// greet();

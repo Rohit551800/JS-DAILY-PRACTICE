@@ -1,5 +1,5 @@
 //-------------------------->>Stirngs <<---------------------------------//
-console.log("----------------------------->>String File<<--------------------------------");
+// console.log("----------------------------->>String File<<--------------------------------");
 
 
 // can be created by single or double quotes
@@ -75,7 +75,7 @@ for slash        : \\       : \
 
 
 
-let string = "Rohit Singh Gouria";
+// let string = "Rohit Singh Gouria";
 // let str = Array.from(string);
 // console.log(str);
 
@@ -301,7 +301,7 @@ let string = "Rohit Singh Gouria";
 
 
 
-let text = "          hello , world      ";
+// let text = "          hello , world      ";
 //used to remove the extra space from the string
 // let result = console.log(text.trim());
 
@@ -371,14 +371,14 @@ let text = "          hello , world      ";
 
 //better solution using set
 
-const result = (str) => {
-  const set = new Set();
-  for(let i of str.toLowerCase()){
-    if(i >= 'a' && i <= 'z'){
-      set.add(i);
-    }
-  }
-  return set.size === 26;
-}
+// const result = (str) => {
+//   const set = new Set();
+//   for(let i of str.toLowerCase()){
+//     if(i >= 'a' && i <= 'z'){
+//       set.add(i);
+//     }
+//   }
+//   return set.size === 26;
+// }
 
-console.log(result("the quick brown fox jumps over the lazy dog"));
+// console.log(result("the quick brown fox jumps over the lazy dog"));

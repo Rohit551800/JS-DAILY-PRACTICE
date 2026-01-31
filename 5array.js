@@ -197,7 +197,7 @@
 
 
 // const numbers = [1,2,3,4,5,6,7,8,9];
-const persons = ["Ram","Hari","Sita","Bishal","Gita"];
+// const persons = ["Ram","Hari","Sita","Bishal","Gita"];
 //------------------------------------>indexOf()<----------------------------------------//
 
 
@@ -247,7 +247,7 @@ const persons = ["Ram","Hari","Sita","Bishal","Gita"];
 
 //todo Chalange time
 // 1>Add Dec at the end of the array
-const months = ["Jan" , "Feb" , "mar" , "Apr" , "May" , "Jun" , "July"];
+// const months = ["Jan" , "Feb" , "mar" , "Apr" , "May" , "Jun" , "July"];
 // //months.push("Dec"); //-->method 1
 // months.splice(months.length , 0 , "Dec");
 // console.log(months);
@@ -449,3 +449,4 @@ array_name.find((curentElement , index , array_name) =>{
 
 
 
+ 
