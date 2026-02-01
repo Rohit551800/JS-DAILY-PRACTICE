@@ -1,0 +1,53 @@
+<!-- ---------------------------********Events In JavaScript********----------------->
+
+<!-- What we are going to learn -->
+<!-- 
+
+1->3 Ways of writing events
+2->What are event objects
+3->Mouse Events in JavaScript
+4->Keyboard Events in JavaScript
+5->Input Events in JavaScript
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events In JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Inline Event -->
+    <div class="main-container">
+        <div class="inline-event container">
+        <h1 class="heading">Inline Events</h1>
+        <button class = "btn" onclick="alert('Welcome to my page')">greeting</button> 
+        <button class = "btn" ondblclick="alert('Welcome again bruh')">greeting again</button>
+    </div>
+    <!-- Dom Event Handler -->
+    <div class="dom-event--handler container">
+        <h1 class="heading">Dom Event Handler</h1>
+        <button class="btn" id="dombtn1">greeting</button> 
+        <button class="btn" id="dombtn2">greeting again</button>
+    </div>
+    <!-- addEventListener Event Handler  -->
+    <div class="addEventListner-event--handler container">
+        <h1 class="heading">addEventListner-event--handler</h1>
+        <button class="btn">greeting</button> 
+        <button class="btn">greeting again</button>
+    </div>
+    </div>
+
+    <script>
+        let domntn1 = document.getElementById('dombtn1');
+        let domntn2 = document.getElementById('dombtn2');
+        domntn1.onclick =() =>  alert('Welcome'); //Single click pe alert ayega
+        domntn1.onmouseover =() =>  alert('Welcome'); //mouse jb btn pe jaega tb alert ayega
+        domntn2.ondblclick =() =>  alert('Welcome'); //Double click pe alert ayega
+    </script>
+</body>
+</html>
