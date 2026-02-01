@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions Notes - Handwritten Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            font-family: 'Caveat', cursive;
+            min-height: 100vh;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page {
+            background: linear-gradient(to bottom, 
+                transparent 0px, 
+                transparent 31px, 
+                #e8e8e8 31px, 
+                #e8e8e8 32px, 
+                transparent 32px), 
+                white;
+            background-size: 100% 32px;
+            padding: 50px 60px 50px 80px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+            border-radius: 5px;
+            line-height: 32px;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ffb6c1;
+        }
+
+        .hole {
+            position: absolute;
+            left: 20px;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #ddd 0%, #fff 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hole:nth-child(1) { top: 80px; }
+        .hole:nth-child(2) { top: 50%; }
+        .hole:nth-child(3) { bottom: 80px; }
+
+        h1 {
+            color: #2563eb;
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: underline;
+            text-decoration-color: #2563eb;
+            text-decoration-thickness: 3px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #dc2626;
+            font-size: 34px;
+            margin: 25px 0 15px 0;
+            text-decoration: underline;
+            text-decoration-color: #dc2626;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #059669;
+            font-size: 28px;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .code {
+            color: #1e40af;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 22px;
+            line-height: 30px;
+            margin: 8px 0;
+            padding-left: 15px;
+        }
+
+        .comment {
+            color: #16a34a;
+            font-style: italic;
+        }
+
+        .output {
+            color: #7c3aed;
+            font-weight: 600;
+        }
+
+        .keyword {
+            text-decoration: underline;
+            text-decoration-color: #dc2626;
+            font-weight: 600;
+        }
+
+        .arrow {
+            color: #ea580c;
+            font-weight: 700;
+        }
+
+        .box {
+            border: 2px solid #2563eb;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .syntax {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-family: 'Indie Flower', cursive;
+            font-size: 24px;
+        }
+
+        .note {
+            background: #dbeafe;
+            border-left: 4px solid #2563eb;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        .important {
+            background: #fee2e2;
+            border: 2px dashed #dc2626;
+            padding: 10px;
+            margin: 12px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .separator {
+            border-bottom: 2px dashed #94a3b8;
+            margin: 20px 0;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            color: #64748b;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        
+        <!-- Page 1 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Functions in JavaScript</h1>
+            
+            <div class="box">
+                A <span class="keyword">function</span> is a reusable block of code designed to perform a specific task
+            </div>
+            
+            <div class="important">
+                <span class="arrow">★</span> Benefits of Functions:<br>
+                • Code reusability<br>
+                • Better organization<br>
+                • Easier debugging<br>
+                • Maintainability
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>1. Function Declaration</h2>
+            
+            <div class="syntax">
+                Syntax:<br>
+                function functionName(parameters) {<br>
+                &nbsp;&nbsp;// code to execute<br>
+                &nbsp;&nbsp;return value; // optional<br>
+                }
+            </div>
+            
+            <h3>Example: Simple Function</h3>
+            <div class="code">function greet() {</div>
+            <div class="code">&nbsp;&nbsp;console.log("Welcome to thapa technical course of javascript");</div>
+            <div class="code">}</div>
+            
+            <h3>Function Invocation (Calling)</h3>
+            <div class="code">greet(); <span class="comment">// calls the function</span></div>
+            
+            <div class="note">
+                <span class="keyword">Best Practice:</span> Declare function before calling it
+            </div>
+            
+            <div class="page-number">1</div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>Function with Return Value</h2>
+            
+            <h3>Example: Sum Function</h3>
+            <div class="code">function sum(a, b) {</div>
+            <div class="code">&nbsp;&nbsp;return (a + b);</div>
+            <div class="code">}</div>
+            <div class="code"></div>
+            <div class="code">console.log(sum(5, 5)); <span class="output">// Output: 10</span></div>
+            <div class="code"></div>
+            <div class="code">let x = sum(10, 12);</div>
+            <div class="code">console.log(x); <span class="output">// Output: 22</span></div>
+            
+            <div class="separator"></div>
+            
+            <h2>Function Parameters</h2>
+            
+            <div class="box">
+                Values passed to a function are called <span class="keyword">parameters</span><br>
+                Also known as <span class="keyword">arguments</span>
+            </div>
+            
+            <h3>Example: Sum of Two Numbers</h3>
+            <div class="code">function sumOfTwoNumbers(a, b) {</div>
+            <div class="code">&nbsp;&nbsp;return (a + b);</div>
+            <div class="code">}</div>
+            <div class="code"></div>
+            <div class="code">console.log(sumOfTwoNumbers(5, 6)); <span class="output">// 11</span></div>
+            
+            <div class="note">
+                Here, <span class="keyword">a</span> and <span class="keyword">b</span> are parameters of sumOfTwoNumbers function
+            </div>
+            
+            <div class="page-number">2</div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Example: Subtraction Function</h3>
+            <div class="code">function sub(a, b) {</div>
+            <div class="code">&nbsp;&nbsp;return (a - b);</div>
+            <div class="code">}</div>
+            <div class="code"></div>
+            <div class="code">console.log(sub(4, 2)); <span class="output">// Output: 2</span></div>
+            
+            <h3>Example: Greet with Name</h3>
+            <div class="code">function greet2(name) {</div>
+            <div class="code">&nbsp;&nbsp;return console.log("Hello " + name + ", Welcome to Thapa technical course.");</div>
+            <div class="code">}</div>
+            <div class="code"></div>
+            <div class="code">greet2("Vinod");</div>
+            <div class="code">greet2("Rohit");</div>
+            
+            <div class="output">
+                // Output:<br>
+                // Hello Vinod, Welcome to Thapa technical course.<br>
+                // Hello Rohit, Welcome to Thapa technical course.
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>2. Function Expression</h2>
+            
+            <div class="box">
+                Storing a function in a <span class="keyword">variable</span><br>
+                Function expression mtlb kisi variable mai function ki value store karna
+            </div>
+            
+            <div class="code">var result = function sum(a, b) {</div>
+            <div class="code">&nbsp;&nbsp;return (a + b);</div>
+            <div class="code">}</div>
+            <div class="code">console.log(result(10, 16)); <span class="output">// 26</span></div>
+            
+            <div class="page-number">3</div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>3. Anonymous Function</h2>
+            
+            <div class="box">
+                A function <span class="keyword">without a name</span><br>
+                Usually assigned to a variable
+            </div>
+            
+            <div class="code">var result = function(a, b) {</div>
+            <div class="code">&nbsp;&nbsp;return (a + b);</div>
+            <div class="code">}</div>
+            <div class="code">console.log(result(10, 16)); <span class="output">// 26</span></div>
+            
+            <div class="note">
+                Notice: No function name after the <span class="keyword">function</span> keyword
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>4. IIFE (Immediately Invoked Function Expression)</h2>
+            
+            <div class="box">
+                Function that runs <span class="keyword">automatically</span> when page loads<br>
+                Executes immediately without being called
+            </div>
+            
+            <div class="syntax">
+                Syntax:<br>
+                (function(parameters) {<br>
+                &nbsp;&nbsp;// code<br>
+                })(arguments);
+            </div>
+            
+            <h3>Example 1: Simple IIFE</h3>
+            <div class="code">(function(a, b) {</div>
+            <div class="code">&nbsp;&nbsp;console.log(a + b);</div>
+            <div class="code">})(5, 19);</div>
+            <div class="output">// Output: 24 (runs immediately)</div>
+            
+            <div class="page-number">4</div>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Example 2: IIFE with Return Value</h3>
+            <div class="code">var result = (function(a, b) {</div>
+            <div class="code">&nbsp;&nbsp;return (a + b);</div>
+            <div class="code">})(5, 18);</div>
+            <div class="code"></div>
+            <div class="code">console.log("Sum of two numbers is: " + result);</div>
+            <div class="output">// Output: Sum of two numbers is: 23</div>
+            
+            <div class="important">
+                <span class="arrow">★</span> IIFE Use Cases:<br>
+                • Avoid polluting global scope<br>
+                • Execute code immediately<br>
+                • Create private variables<br>
+                • Module pattern
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>Practice: Reverse a String</h2>
+            
+            <div class="note">
+                <span class="arrow">⚠️</span> Note: This example has an issue - strings are immutable in JS<br>
+                Better to use array or different approach
+            </div>
+            
+            <div class="code">var result = function(s) {</div>
+            <div class="code">&nbsp;&nbsp;var i = 0, j = s.length;</div>
+            <div class="code">&nbsp;&nbsp;while(i < j) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;var temp = s[i];</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;s[i] = s[j];</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;s[j] = temp;</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;i++;</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;j--;</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;return s;</div>
+            <div class="code">}</div>
+            <div class="code">console.log("Reverse of the given string is: " + result("ROHIT"));</div>
+            
+            <div class="page-number">5</div>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Arrow Functions (ES6)</h1>
+            
+            <div class="box">
+                Introduced in <span class="keyword">ECMAScript 2015 (ES6)</span><br>
+                Shorter syntax for writing functions
+            </div>
+            
+            <div class="syntax">
+                Syntax:<br>
+                const functionName = (parameters) => {<br>
+                &nbsp;&nbsp;// code<br>
+                &nbsp;&nbsp;return value;<br>
+                }
+            </div>
+            
+            <h2>Basic Arrow Function</h2>
+            
+            <div class="code">const sum = (a, b) => {</div>
+            <div class="code">&nbsp;&nbsp;return a + b;</div>
+            <div class="code">}</div>
+            <div class="code">console.log(sum(5, 6)); <span class="output">// 11</span></div>
+            
+            <div class="separator"></div>
+            
+            <h2>Arrow Function - Short Syntax</h2>
+            
+            <div class="important">
+                <span class="arrow">★</span> Rules for Short Syntax:
+            </div>
+            
+            <div class="note">
+                <strong>Rule 1:</strong> If function body has only <span class="keyword">one expression</span>,<br>
+                you can remove <span class="keyword">{ }</span> braces and <span class="keyword">return</span> keyword
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">const sum = (a, b) => `Sum of ${a} and ${b} = ${a + b}`;</div>
+            <div class="code">console.log(sum(5, 6));</div>
+            <div class="output">// Output: Sum of 5 and 6 = 11</div>
+            
+            <div class="page-number">6</div>
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <div class="note">
+                <strong>Rule 2:</strong> If only <span class="keyword">one parameter</span>,<br>
+                you can remove <span class="keyword">( )</span> parentheses around parameter
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">const square = a => `Square of ${a} = ${a * a}`;</div>
+            <div class="code"></div>
+            <div class="code">console.log(square(5));</div>
+            <div class="output">// Output: Square of 5 = 25</div>
+            
+            <div class="separator"></div>
+            
+            <div class="note">
+                <strong>Rule 3:</strong> If <span class="keyword">no parameters</span>,<br>
+                you must use <span class="keyword">( )</span> empty parentheses
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">const greet = () => console.log("Hello world");</div>
+            <div class="code"></div>
+            <div class="code">greet();</div>
+            <div class="output">// Output: Hello world</div>
+            
+            <div class="separator"></div>
+            
+            <h2>Arrow Function Examples</h2>
+            
+            <h3>Example 1: Multiple Parameters</h3>
+            <div class="code">const sum = (a, b) => `Sum of ${a} and ${b} = ${a + b}`;</div>
+            <div class="code">console.log(sum(5, 6));</div>
+            
+            <h3>Example 2: Single Parameter</h3>
+            <div class="code">const square = a => `Square of ${a} = ${a * a}`;</div>
+            <div class="code">console.log(square(5));</div>
+            
+            <h3>Example 3: No Parameters</h3>
+            <div class="code">const greet = () => console.log("Hello world");</div>
+            <div class="code">greet();</div>
+            
+            <div class="page-number">7</div>
+        </div>
+
+        <!-- Page 8 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Function Types Comparison</h1>
+            
+            <div class="box">
+                <h3>1. Function Declaration</h3>
+                <div class="code">function sum(a, b) {</div>
+                <div class="code">&nbsp;&nbsp;return a + b;</div>
+                <div class="code">}</div>
+                <div class="arrow">✓</div> Can be hoisted (called before declaration)
+            </div>
+            
+            <div class="box">
+                <h3>2. Function Expression</h3>
+                <div class="code">const sum = function(a, b) {</div>
+                <div class="code">&nbsp;&nbsp;return a + b;</div>
+                <div class="code">}</div>
+                <div class="arrow">✗</div> Cannot be hoisted
+            </div>
+            
+            <div class="box">
+                <h3>3. Arrow Function</h3>
+                <div class="code">const sum = (a, b) => a + b;</div>
+                <div class="arrow">✓</div> Shorter syntax<br>
+                <div class="arrow">✗</div> No 'this' binding
+            </div>
+            
+            <div class="box">
+                <h3>4. IIFE</h3>
+                <div class="code">(function(a, b) {</div>
+                <div class="code">&nbsp;&nbsp;console.log(a + b);</div>
+                <div class="code">})(5, 10);</div>
+                <div class="arrow">✓</div> Executes immediately<br>
+                <div class="arrow">✓</div> Private scope
+            </div>
+            
+            <div class="page-number">8</div>
+        </div>
+
+        <!-- Page 9 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Key Points for Exams</h1>
+            
+            <div class="important">
+                <span class="arrow">★</span> <strong>Function Basics:</strong><br>
+                • Functions are reusable blocks of code<br>
+                • Can have parameters (inputs)<br>
+                • Can return values (outputs)<br>
+                • Declare before calling (best practice)
+            </div>
+            
+            <div class="important">
+                <span class="arrow">★</span> <strong>Function Types:</strong><br>
+                1. <span class="keyword">Declaration</span> - function name() { }<br>
+                2. <span class="keyword">Expression</span> - var x = function() { }<br>
+                3. <span class="keyword">Anonymous</span> - function() { }<br>
+                4. <span class="keyword">IIFE</span> - (function() { })()<br>
+                5. <span class="keyword">Arrow</span> - () => { }
+            </div>
+            
+            <div class="important">
+                <span class="arrow">★</span> <strong>Arrow Function Rules:</strong><br>
+                • One expression <span class="arrow">→</span> no { } or return needed<br>
+                • One parameter <span class="arrow">→</span> no ( ) needed<br>
+                • No parameters <span class="arrow">→</span> ( ) required
+            </div>
+            
+            <div class="important">
+                <span class="arrow">★</span> <strong>IIFE Characteristics:</strong><br>
+                • Runs immediately<br>
+                • Creates private scope<br>
+                • Syntax: (function() { })(arguments)
+            </div>
+            
+            <div class="page-number">9</div>
+        </div>
+
+        <!-- Page 10 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Practice Questions</h1>
+            
+            <h3>Q1: Create function to check if number is even</h3>
+            <div class="code">const isEven = num => num % 2 === 0;</div>
+            <div class="code">console.log(isEven(4)); <span class="output">// true</span></div>
+            <div class="code">console.log(isEven(7)); <span class="output">// false</span></div>
+            
+            <h3>Q2: Function to find maximum of two numbers</h3>
+            <div class="code">const max = (a, b) => a > b ? a : b;</div>
+            <div class="code">console.log(max(10, 20)); <span class="output">// 20</span></div>
+            
+            <h3>Q3: Function to calculate area of circle</h3>
+            <div class="code">const areaOfCircle = r => (3.14 * r * r).toFixed(2);</div>
+            <div class="code">console.log(areaOfCircle(5)); <span class="output">// 78.50</span></div>
+            
+            <h3>Q4: Function to convert Celsius to Fahrenheit</h3>
+            <div class="code">const celsiusToFahrenheit = c => (c * 9/5) + 32;</div>
+            <div class="code">console.log(celsiusToFahrenheit(0)); <span class="output">// 32</span></div>
+            <div class="code">console.log(celsiusToFahrenheit(100)); <span class="output">// 212</span></div>
+            
+            <h3>Q5: IIFE to display current date</h3>
+            <div class="code">(function() {</div>
+            <div class="code">&nbsp;&nbsp;console.log(new Date());</div>
+            <div class="code">})();</div>
+            
+            <div class="separator"></div>
+            
+            <div style="text-align: center; font-size: 28px; color: #16a34a; margin-top: 20px;">
+                Master Functions! 🎯✨
+            </div>
+            
+            <div class="page-number">10</div>
+        </div>
+
+    </div>
+</body>
+</html>

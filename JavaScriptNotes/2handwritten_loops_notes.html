@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Loops Notes - Handwritten Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            font-family: 'Caveat', cursive;
+            min-height: 100vh;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page {
+            background: linear-gradient(to bottom, 
+                transparent 0px, 
+                transparent 31px, 
+                #e8e8e8 31px, 
+                #e8e8e8 32px, 
+                transparent 32px), 
+                white;
+            background-size: 100% 32px;
+            padding: 50px 60px 50px 80px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+            border-radius: 5px;
+            line-height: 32px;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ffb6c1;
+        }
+
+        .hole {
+            position: absolute;
+            left: 20px;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #ddd 0%, #fff 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hole:nth-child(1) { top: 80px; }
+        .hole:nth-child(2) { top: 50%; }
+        .hole:nth-child(3) { bottom: 80px; }
+
+        h1 {
+            color: #2563eb;
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: underline;
+            text-decoration-color: #2563eb;
+            text-decoration-thickness: 3px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #dc2626;
+            font-size: 34px;
+            margin: 25px 0 15px 0;
+            text-decoration: underline;
+            text-decoration-color: #dc2626;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #059669;
+            font-size: 28px;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .code {
+            color: #1e40af;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 22px;
+            line-height: 30px;
+            margin: 8px 0;
+            padding-left: 15px;
+        }
+
+        .comment {
+            color: #16a34a;
+            font-style: italic;
+        }
+
+        .output {
+            color: #7c3aed;
+            font-weight: 600;
+        }
+
+        .keyword {
+            text-decoration: underline;
+            text-decoration-color: #dc2626;
+            font-weight: 600;
+        }
+
+        .arrow {
+            color: #ea580c;
+            font-weight: 700;
+        }
+
+        .box {
+            border: 2px solid #2563eb;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .syntax {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-family: 'Indie Flower', cursive;
+            font-size: 24px;
+        }
+
+        .note {
+            background: #dbeafe;
+            border-left: 4px solid #2563eb;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        .important {
+            background: #fee2e2;
+            border: 2px dashed #dc2626;
+            padding: 10px;
+            margin: 12px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .separator {
+            border-bottom: 2px dashed #94a3b8;
+            margin: 20px 0;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            color: #64748b;
+            font-size: 20px;
+        }
+
+        .pattern {
+            font-family: 'Space Mono', monospace;
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        
+        <!-- Page 1 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Loops in JavaScript</h1>
+            
+            <div class="important">
+                Loops are used to execute a block of code <span class="keyword">repeatedly</span><br>
+                until a specified condition is met
+            </div>
+            
+            <div class="box">
+                <strong>Types of Loops:</strong><br>
+                1. while loop<br>
+                2. do-while loop<br>
+                3. for loop
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>1. While Loop</h2>
+            
+            <div class="syntax">
+                Syntax:<br>
+                while(condition) {<br>
+                &nbsp;&nbsp;// code to execute<br>
+                &nbsp;&nbsp;// update expression<br>
+                }
+            </div>
+            
+            <div class="note">
+                • Checks condition <span class="keyword">before</span> executing code<br>
+                • May not execute even once if condition is false initially
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">let i = 0;</div>
+            <div class="code">while(i < 10) {</div>
+            <div class="code">&nbsp;&nbsp;console.log("Hellow world");</div>
+            <div class="code">&nbsp;&nbsp;i++;</div>
+            <div class="code">}</div>
+            <div class="output">// Prints "Hellow world" 10 times</div>
+            
+            <div class="page-number">1</div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>2. Do-While Loop</h2>
+            
+            <div class="syntax">
+                Syntax:<br>
+                do {<br>
+                &nbsp;&nbsp;// code to execute<br>
+                &nbsp;&nbsp;// update expression<br>
+                } while(condition);
+            </div>
+            
+            <div class="note">
+                • Checks condition <span class="keyword">after</span> executing code<br>
+                • Executes <span class="keyword">at least once</span> even if condition is false
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">let j = 0;</div>
+            <div class="code"></div>
+            <div class="code">do {</div>
+            <div class="code">&nbsp;&nbsp;console.log("Love you muski ❤️");</div>
+            <div class="code">&nbsp;&nbsp;j++;</div>
+            <div class="code">} while(j < 5);</div>
+            <div class="output">// Prints "Love you muski ❤️" 5 times</div>
+            
+            <div class="important">
+                <span class="arrow">★</span> Key Difference:<br>
+                • <span class="keyword">while</span> <span class="arrow">→</span> checks first, then executes<br>
+                • <span class="keyword">do-while</span> <span class="arrow">→</span> executes first, then checks
+            </div>
+            
+            <div class="page-number">2</div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h2>3. For Loop</h2>
+            
+            <div class="syntax">
+                Syntax:<br>
+                for(initialization; condition; update) {<br>
+                &nbsp;&nbsp;// code to execute<br>
+                }
+            </div>
+            
+            <div class="box">
+                <strong>Three Parts:</strong><br>
+                1. <span class="keyword">Initialization</span> - runs once at start<br>
+                2. <span class="keyword">Condition</span> - checked before each iteration<br>
+                3. <span class="keyword">Update</span> - runs after each iteration
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">for(let x = 0; x < 5; x++) {</div>
+            <div class="code">&nbsp;&nbsp;console.log("Muskan ❤️");</div>
+            <div class="code">}</div>
+            <div class="output">// Prints "Muskan ❤️" 5 times</div>
+            
+            <div class="separator"></div>
+            
+            <h2>Practice Problems</h2>
+            
+            <h3>Problem 1: Print Multiplication Table of 5</h3>
+            <div class="code">let a = 1;</div>
+            <div class="code">while(a <= 10) {</div>
+            <div class="code">&nbsp;&nbsp;console.log("5 * " + a + " = " + (5 * a));</div>
+            <div class="code">&nbsp;&nbsp;a++;</div>
+            <div class="code">}</div>
+            
+            <div class="output">
+                // Output:<br>
+                // 5 * 1 = 5<br>
+                // 5 * 2 = 10<br>
+                // ... and so on
+            </div>
+            
+            <div class="page-number">3</div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Problem 2: User Input (Positive Number)</h3>
+            
+            <div class="note">
+                <span class="arrow">⚠️</span> Works only in console (browser)
+            </div>
+            
+            <div class="code">let userInput;</div>
+            <div class="code">let posNumber;</div>
+            <div class="code">do {</div>
+            <div class="code">&nbsp;&nbsp;userInput = prompt("enter any positive number");</div>
+            <div class="code">&nbsp;&nbsp;posNumber = parseInt(userInput);</div>
+            <div class="code">} while(isNaN(posNumber) || posNumber < 0);</div>
+            <div class="code">console.log("The positive number is: " + posNumber);</div>
+            
+            <div class="note">
+                Loop continues until user enters a valid positive number
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h3>Problem 3: Sum of Numbers 1 to 10</h3>
+            <div class="code">let sum = 0;</div>
+            <div class="code">for(let i = 1; i <= 10; i++) {</div>
+            <div class="code">&nbsp;&nbsp;sum += i;</div>
+            <div class="code">}</div>
+            <div class="code">console.log("Sum of 1-10 numbers is: " + sum);</div>
+            <div class="output">// Output: Sum of 1-10 numbers is: 55</div>
+            
+            <div class="note">
+                <span class="keyword">Calculation:</span> 1+2+3+4+5+6+7+8+9+10 = 55
+            </div>
+            
+            <div class="page-number">4</div>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Problem 4: Check Leap Year</h3>
+            
+            <div class="note">
+                <span class="arrow">⚠️</span> Works only in console (browser)
+            </div>
+            
+            <div class="code">let year;</div>
+            <div class="code">while(true) {</div>
+            <div class="code">&nbsp;&nbsp;year = prompt("Enter the year:");</div>
+            <div class="code">&nbsp;&nbsp;if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;console.log("Entered year is a leap year");</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;break;</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;else {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;console.log("entered year is not a leap year");</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">}</div>
+            
+            <div class="box">
+                <strong>Leap Year Conditions:</strong><br>
+                1. Divisible by 4 AND not divisible by 100<br>
+                <span class="arrow">OR</span><br>
+                2. Divisible by 400
+            </div>
+            
+            <div class="note">
+                <span class="keyword">Examples:</span><br>
+                • 2000 = Leap year (divisible by 400)<br>
+                • 1900 = Not leap year (divisible by 100 but not 400)<br>
+                • 2024 = Leap year (divisible by 4 but not 100)
+            </div>
+            
+            <div class="page-number">5</div>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h3>Problem 5: Half Pyramid Pattern</h3>
+            
+            <div class="code">let x = 5;</div>
+            <div class="code">for(let i = 1; i <= x; i++) {</div>
+            <div class="code">&nbsp;&nbsp;let row = "";</div>
+            <div class="code">&nbsp;&nbsp;for(let j = 0; j < i; j++) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;row += "* ";</div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;console.log(row);</div>
+            <div class="code">}</div>
+            
+            <div class="pattern">
+                Output:<br>
+                *<br>
+                * *<br>
+                * * *<br>
+                * * * *<br>
+                * * * * *
+            </div>
+            
+            <div class="note">
+                <strong>How it works:</strong><br>
+                • Outer loop (i) controls rows (1 to 5)<br>
+                • Inner loop (j) prints stars (0 to i-1)<br>
+                • Each row has i number of stars
+            </div>
+            
+            <div class="important">
+                <span class="arrow">★</span> Nested Loop Concept:<br>
+                Outer loop runs 5 times<br>
+                For each outer loop, inner loop runs i times
+            </div>
+            
+            <div class="page-number">6</div>
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Loop Control Statements</h1>
+            
+            <h2>1. break Statement</h2>
+            <div class="box">
+                Immediately <span class="keyword">exits</span> the loop
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">for(let i = 1; i <= 10; i++) {</div>
+            <div class="code">&nbsp;&nbsp;if(i == 5) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;break; <span class="comment">// stops loop when i = 5</span></div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;console.log(i);</div>
+            <div class="code">}</div>
+            <div class="output">// Output: 1 2 3 4</div>
+            
+            <div class="separator"></div>
+            
+            <h2>2. continue Statement</h2>
+            <div class="box">
+                Skips the current iteration and continues with next
+            </div>
+            
+            <h3>Example:</h3>
+            <div class="code">for(let i = 1; i <= 5; i++) {</div>
+            <div class="code">&nbsp;&nbsp;if(i == 3) {</div>
+            <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;continue; <span class="comment">// skips 3</span></div>
+            <div class="code">&nbsp;&nbsp;}</div>
+            <div class="code">&nbsp;&nbsp;console.log(i);</div>
+            <div class="code">}</div>
+            <div class="output">// Output: 1 2 4 5</div>
+            
+            <div class="page-number">7</div>
+        </div>
+
+        <!-- Page 8 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>When to Use Which Loop?</h1>
+            
+            <div class="box">
+                <h3><span class="keyword">for loop</span></h3>
+                • When you know the exact number of iterations<br>
+                • Best for counting and iterating arrays<br>
+                <span class="arrow">Example:</span> Print 1 to 10
+            </div>
+            
+            <div class="box">
+                <h3><span class="keyword">while loop</span></h3>
+                • When you don't know exact iterations<br>
+                • Condition-based repetition<br>
+                <span class="arrow">Example:</span> Keep asking until valid input
+            </div>
+            
+            <div class="box">
+                <h3><span class="keyword">do-while loop</span></h3>
+                • When code must execute at least once<br>
+                • User input validation<br>
+                <span class="arrow">Example:</span> Menu-driven programs
+            </div>
+            
+            <div class="separator"></div>
+            
+            <h2>Common Mistakes to Avoid</h2>
+            
+            <div class="important">
+                <span class="arrow">❌</span> <strong>Infinite Loop:</strong><br>
+                Forgetting to update loop variable
+            </div>
+            
+            <div class="code">let i = 0;</div>
+            <div class="code">while(i < 10) {</div>
+            <div class="code">&nbsp;&nbsp;console.log(i);</div>
+            <div class="code">&nbsp;&nbsp;<span class="comment">// forgot i++; → infinite loop!</span></div>
+            <div class="code">}</div>
+            
+            <div class="page-number">8</div>
+        </div>
+
+        <!-- Page 9 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Key Points for Exams</h1>
+            
+            <div class="important">
+                <span class="arrow">★</span> <strong>Loop Comparison:</strong>
+            </div>
+            
+            <div class="box">
+                <strong>for loop:</strong><br>
+                • Best for known iterations<br>
+                • Syntax: for(init; condition; update)<br>
+                • Example: for(let i=0; i<10; i++)
+            </div>
+            
+            <div class="box">
+                <strong>while loop:</strong><br>
+                • Checks condition before execution<br>
+                • May not execute at all<br>
+                • Example: while(i < 10)
+            </div>
+            
+            <div class="box">
+                <strong>do-while loop:</strong><br>
+                • Checks condition after execution<br>
+                • Executes at least once<br>
+                • Example: do { } while(i < 10);
+            </div>
+            
+            <div class="important">
+                <span class="arrow">★</span> <strong>Control Statements:</strong><br>
+                • <span class="keyword">break</span> <span class="arrow">→</span> exits loop completely<br>
+                • <span class="keyword">continue</span> <span class="arrow">→</span> skips current iteration
+            </div>
+            
+            <div class="important">
+                <span class="arrow">★</span> <strong>Nested Loops:</strong><br>
+                Used for patterns, 2D arrays, matrices<br>
+                Outer loop controls rows, inner loop controls columns
+            </div>
+            
+            <div class="page-number">9</div>
+        </div>
+
+        <!-- Page 10 -->
+        <div class="page">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            
+            <h1>Practice Questions</h1>
+            
+            <h3>Q1: Print even numbers from 1 to 20</h3>
+            <div class="code">for(let i = 2; i <= 20; i += 2) {</div>
+            <div class="code">&nbsp;&nbsp;console.log(i);</div>
+            <div class="code">}</div>
+            
+            <h3>Q2: Print numbers in reverse (10 to 1)</h3>
+            <div class="code">for(let i = 10; i >= 1; i--) {</div>
+            <div class="code">&nbsp;&nbsp;console.log(i);</div>
+            <div class="code">}</div>
+            
+            <h3>Q3: Calculate factorial of 5</h3>
+            <div class="code">let factorial = 1;</div>
+            <div class="code">for(let i = 1; i <= 5; i++) {</div>
+            <div class="code">&nbsp;&nbsp;factorial *= i;</div>
+            <div class="code">}</div>
+            <div class="code">console.log(factorial); <span class="output">// 120</span></div>
+            
+            <h3>Q4: Print Fibonacci series (first 10 numbers)</h3>
+            <div class="code">let a = 0, b = 1;</div>
+            <div class="code">console.log(a);</div>
+            <div class="code">console.log(b);</div>
+            <div class="code">for(let i = 3; i <= 10; i++) {</div>
+            <div class="code">&nbsp;&nbsp;let c = a + b;</div>
+            <div class="code">&nbsp;&nbsp;console.log(c);</div>
+            <div class="code">&nbsp;&nbsp;a = b;</div>
+            <div class="code">&nbsp;&nbsp;b = c;</div>
+            <div class="code">}</div>
+            
+            <div class="separator"></div>
+            
+            <div style="text-align: center; font-size: 28px; color: #16a34a; margin-top: 20px;">
+                Keep Practicing Loops! 🔄✨
+            </div>
+            
+            <div class="page-number">10</div>
+        </div>
+
+    </div>
+</body>
+</html>
