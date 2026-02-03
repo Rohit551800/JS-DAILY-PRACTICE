@@ -37,17 +37,17 @@
     <!-- addEventListener Event Handler  -->
     <div class="addEventListner-event--handler container">
         <h1 class="heading">addEventListner-event--handler</h1>
-        <button class="btn">greeting</button> 
-        <button class="btn">greeting again</button>
+        <button class="btn" id="aelbtn1">greeting</button> 
+        <button class="btn" id="aelbtn2">greeting again</button>
     </div>
     </div>
 
     <script>
         let domntn1 = document.getElementById('dombtn1');
-        let domntn2 = document.getElementById('dombtn2');
-        domntn1.onclick =() =>  alert('Welcome'); //Single click pe alert ayega
+        let aelbtn1 = document.getElementById('aelbtn1');
+        // domntn1.onclick =() =>  alert('Welcome'); //Single click pe alert ayega
         domntn1.onmouseover =() =>  alert('Welcome'); //mouse jb btn pe jaega tb alert ayega
-        domntn2.ondblclick =() =>  alert('Welcome'); //Double click pe alert ayega
+        aelbtn1.addEventListener('click' , () => alert('welcome to the world best cousre')); //Double click pe alert ayega
     </script>
 </body>
 </html>

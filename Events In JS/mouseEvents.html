@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Events</title>
+    <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+    .rectangle {
+        width: 25rem;
+        aspect-ratio: 1;
+        background-color: black;
+        display: grid;
+        place-items: center;
+        border: 2px solid yellow;
+        border-radius: 1rem;
+        transition: all 0.5s linear 1s;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    }
+    .addTransition1{
+        border-radius: 50%;
+        translate: 30rem 0rem;
+    }
+    .addTransition2{
+        border-radius: 50%;
+        translate: -30rem 0rem;
+    }
+    .addTransition3{
+        border-radius: 50%;
+        translate: 30rem 0rem;
+    }
+    .addTransition4{
+        translate: -30rem 0rem;
+    }
+    .addTransition5{
+        translate: 30rem 0rem;
+    }
+    #myButton{
+      padding: 1rem 2.5rem;
+      border: 2px solid black;
+      background-color: white;
+      font-size: 1.6rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      margin-top: 3rem;
+      margin-left: 6rem;
+    }
+    #myButton:hover {
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+    <section>
+        <div class="rectangle"></div>
+        <button id="myButton">Click Me</button>
+    </section>
+    <script>
+        let myButton = document.getElementById("myButton");
+        let rectDiv = document.querySelector(".rectangle");
+
+        const handleMouseEvents = () => rectDiv.style.backgroundColor = "yellow";
+        
+        const handleMouseEvents1 = () => {
+            console.log("dblclick");
+            rectDiv.style.backgroundColor = "yellow";
+            rectDiv.classList.add("addTransition1");
+        }
+        const handleMouseEvents2 = () => {
+            console.log("mouseover");
+            rectDiv.style.backgroundColor = "yellow";
+            rectDiv.classList.add("addTransition2");
+        }
+        const handleMouseEvents3 = () => {
+            console.log("mouseout")
+            rectDiv.classList.add("addTransition3");
+        }
+        const handleMouseEvents4 = () => {
+            console.log("mousedown")
+            rectDiv.classList.add("addTransition4");
+        }
+        const handleMouseEvents5 = () => {
+            console.log("mouseup");
+            rectDiv.classList.add("addTransition5");
+        }
+        myButton.addEventListener('click' , handleMouseEvents);
+        myButton.addEventListener("dblclick" , () => handleMouseEvents1());// function ki trh tb use krte hai jb parameters pass krne ho
+        rectDiv.addEventListener("mouseover" , handleMouseEvents2);
+        rectDiv.addEventListener("mouseout" , handleMouseEvents3);
+        rectDiv.addEventListener("mousedown" , handleMouseEvents4);
+        rectDiv.addEventListener("mouseup" , handleMouseEvents5);
+    </script>
+</body>
+</html>
