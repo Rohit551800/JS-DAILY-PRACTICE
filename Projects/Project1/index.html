@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Object Example</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            font-family: "Segoe UI", sans-serif;
+            background-image: linear-gradient(to right top,
+                    #051937,
+                    #004d7a,
+                    #008793,
+                    #00bf72,
+                    #a9eb12);
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 3rem 4rem;
+            border-radius: 1.6rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        section>div:first-child {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            height: 4.5rem;
+            width: 12rem;
+            border-radius: 3rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            background: #272323;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .copyCode {
+            background: rgba(0, 0, 0, 0.6);
+            color: #00ffcc;
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            font-size: 1.4rem;
+            font-family: monospace;
+            word-break: break-all;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copyCode:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div>
+            <button id="myBtn1" class="btn">#051937</button>
+            <button id="myBtn2" class="btn">#008793</button>
+        </div>
+
+        <h2>Copy your code here</h2>
+
+        <div class="copyCode">
+            background-image:linear-gradient(to right, rgb(92,145,229) , rgb(152,63,198));
+        </div>
+    </section>
+
+
+    <script>
+        let myBtn1 = document.getElementById("myBtn1");
+        let myBtn2 = document.getElementById("myBtn2");
+        let copyDiv = document.querySelector(".copyCode");
+        // We want random numbers from 0123456789ABCDEF
+        const hexValues = () => {
+            let myHexaValues = "0123456789abcdef";
+            let newStr = "#";
+            for (let i = 0; i < 6; i++) {
+                newStr += myHexaValues[Math.floor(Math.random() * 16)];
+            }
+            return newStr;
+        }
+        const handleButton1 = () => {
+            let val1 = hexValues();
+            let val2 = myBtn2.textContent;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${val1} , ${val2})`;
+            myBtn1.textContent = val1.toUpperCase();
+            copyDiv.textContent = `background-image : linear-gradient(to right, ${val1}  ,${val2});`;
+        }
+
+        const handleButton2 = () => {
+            let val1 = myBtn1.textContent;
+            let val2 = hexValues();
+            document.body.style.backgroundImage = `linear-gradient(to right,${val1} , ${val2})`;
+            myBtn2.textContent = val1.toUpperCase();
+            copyDiv.textContent = `background-image : linear-gradient(to right, ${val1}  ,${val2} );`;
+        }
+
+        copyDiv.addEventListener('click', () => {
+            const textToCopy = copyDiv.textContent;
+
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    copyDiv.textContent = "Copied to Clipboard!";
+                    setTimeout(() => {
+                        copyDiv.textContent = textToCopy;
+                    }, 1500);
+                })
+                .catch((err) => {
+                    console.error("Clipboard copy failed:", err);
+                });
+        });
+        myBtn1.addEventListener("click", handleButton1);
+        myBtn2.addEventListener("click", handleButton2);
+    </script>
+</body>
+
+</html>
