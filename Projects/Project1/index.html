@@ -126,16 +126,16 @@
             let val1 = hexValues();
             let val2 = myBtn2.textContent;
             document.body.style.backgroundImage = `linear-gradient(to right, ${val1} , ${val2})`;
-            myBtn1.textContent = val1.toUpperCase();
             copyDiv.textContent = `background-image : linear-gradient(to right, ${val1}  ,${val2});`;
+            myBtn1.textContent = val1.toUpperCase();
         }
 
         const handleButton2 = () => {
             let val1 = myBtn1.textContent;
             let val2 = hexValues();
             document.body.style.backgroundImage = `linear-gradient(to right,${val1} , ${val2})`;
-            myBtn2.textContent = val1.toUpperCase();
             copyDiv.textContent = `background-image : linear-gradient(to right, ${val1}  ,${val2} );`;
+            myBtn2.textContent = val2.toUpperCase();
         }
 
         copyDiv.addEventListener('click', () => {
