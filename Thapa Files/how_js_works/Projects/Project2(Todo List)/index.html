@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        /* Main container */
+        .main {
+            width: 90%;
+            max-width: 500px;
+            background: #111;
+            padding: 2.5rem;
+            border-radius: 1.2rem;
+        }
+
+        /* Heading */
+        .main h1 {
+            color: white;
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Input + Add button */
+        .addTodo {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .addTodo input {
+            flex: 1;
+            padding: 1.2rem;
+            font-size: 1.4rem;
+            border-radius: 0.6rem;
+            border: none;
+            outline: none;
+        }
+
+        .addTodo button {
+            padding: 1.2rem 2rem;
+            border-radius: 2rem;
+            border: none;
+            background: #f6f36b;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Container for todos */
+        .elements {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        /* Each todo item (JS creates main_div) */
+        .main_div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Todo text */
+        .main_div p {
+            color: white;
+            font-size: 1.6rem;
+        }
+
+        /* Delete button (JS uses class, NOT id) */
+        .delete-btn {
+            background: #f6f36b;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: #ffe066;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1 id="header">Todo List</h1>
+        <br>
+        <form>
+            <div class="addTodo">
+                <input type="text" name="input" id="myInput" placeholder="Type something">
+                <button id="addTodo">Add Todo</button>
+            </div>
+            <div class="elements">
+
+            </div>
+        </form>
+    </div>
+
+
+
+    <script>
+        let myInput = document.getElementById('myInput');
+        let delBtn = document.getElementById('delete-btn');
+        let addTodo = document.getElementById('addTodo');
+        let elements = document.querySelector(".elements");
+        
+        const getLocalTodoList = () => {
+            return JSON.parse(localStorage.getItem("Fruits")) || [];
+        }
+        let localTodoList = getLocalTodoList();
+
+
+        const addTodoDynamicElement = (text) => {
+            const divElement = document.createElement('div');
+            divElement.classList.add('main_div');
+            divElement.innerHTML = `<p>${text}</p>
+            <button class="delete-btn">Delete</button>`;
+            elements.append(divElement);
+        }
+        const removeTodoList = (e) => {
+            localStorage.remove();
+        }
+
+        const addElement = (e) => {
+            e.preventDefault();
+            
+            let inputVal = myInput.value.trim();
+            if(inputVal != "" && !localTodoList.includes(inputVal)){
+                localTodoList = getLocalTodoList();
+                localTodoList.push(inputVal);
+                localTodoList = [... new Set(localTodoList)];
+                localStorage.setItem("Fruits" , JSON.stringify(localTodoList));
+                addTodoDynamicElement(inputVal);
+            }
+
+            myInput.value = "";
+        }
+        const showTodoList = (e) => {
+            localTodoList = getLocalTodoList();
+            localTodoList.forEach(curElem => {
+                addTodoDynamicElement(curElem);
+            });
+        }
+        const delElem = (e) => {
+            let elem2Del = e.target;
+            let todoListContent = elem2Del.previousElementSibling.innerText;
+
+            localTodoList = localTodoList.filter(curTodo => curTodo != todoListContent);
+            localStorage.setItem("Fruits", JSON.stringify(localTodoList));
+            e.target.parentElement.remove();
+        }
+        showTodoList();
+        addTodo.addEventListener('click', (e) => addElement(e))
+        elements.addEventListener('click', (e) => {
+            e.preventDefault();
+            if(e.target.classList.contains("delete-btn")) delElem(e);
+            return;           
+    });
+    </script>
+</body>
+
+</html>
