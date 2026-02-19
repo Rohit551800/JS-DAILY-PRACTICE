@@ -222,3 +222,228 @@
 // const date1 = new Date("2024-02-19");
 // const date2 = new Date("2024-03-01");
 // console.log(getDaysDifference(date1, date2)); // Output: 11 (difference in days)
+
+
+
+
+
+
+//Current Date and time
+//--1>>
+// const currentDate = new Date(); //constructor used to get the date
+// console.log(currentDate);
+
+//--2>>
+//used to display the string in the date string manner or ..syntax
+// const dateStr = "2026-02-11T13:11:32.553Z";
+// const dateFromString = new Date(dateStr);
+
+// console.log(dateFromString);
+
+
+//--3>> new Date (year , month)
+
+// const date = new Date(2024 , 5);
+// console.log(date);
+
+
+
+//--4>> new Date(year , month , day)
+
+// const date = new Date(2024 , 5 , 19);
+// console.log(date);
+
+
+
+//--5>> new Date(year , month , day , hour)
+
+// const date = new Date(2024 , 5 , 19 , 10);
+// console.log(date);
+
+
+
+
+//--6>> new Date(year , month , day , hour ,  minutes)
+
+// const date = new Date(2024 , 5 , 19);
+// console.log(date);
+
+
+
+//--7>> new Date(year , month , day , hour , minutes , seconds)
+
+// const date = new Date(2024 , 5 , 19);
+// console.log(date);
+
+
+
+//--8>> new Date(year , month , day , hour , minutes , seconds , miliseconds) //miliseconds are not visible
+
+// const date = new Date(2024 , 5 , 19);
+// console.log(date);
+
+//--9>> miliseconds method
+// const curMilliSeconds = new Date().getTime();
+// const dateFromMilliseconds = new Date(curMilliSeconds);
+
+// console.log(dateFromMilliseconds);+
+
+
+
+
+//In Js there are multiple get methods to access the Date// -->
+
+
+const currentDate = new Date();
+// console.log(currentDate);
+
+const curYear = currentDate.getFullYear();
+// console.log(curYear);
+
+const curMon = currentDate.getMonth();
+// console.log(curMon);
+
+const curDate = currentDate.getDate();
+// console.log(curDay);
+
+const curDay = currentDate.getDay();
+// console.log(curDay);
+
+const curHour = currentDate.getHours();
+// console.log(curHour);
+
+
+
+
+
+
+
+
+
+
+//JS set Date methods / Setting components:
+
+const date = new Date();
+// console.log(date);
+
+date.setFullYear('2025');
+// console.log(date); //return year as 2025
+
+
+// there are multiple same properties 
+//-->setFullYear('year');
+const xmonth = date.setMonth(5);
+// console.log(date);
+//-->setDate('date');
+
+
+//Js getTime methods
+
+const currentTime = new Date();
+
+const currentHour = currentTime.getHours();
+// console.log(currentHour);
+
+const currrentMin = currentTime.getMinutes();
+// console.log(currrentMin);
+
+const currentSec = currentTime.getSeconds();
+// console.log(currentSec);
+
+
+const curMilliSec = currentTime.getMilliseconds();
+// console.log(curMilliSec);
+
+
+
+//JS setTime methods
+const time = new Date();
+
+const newHour = time.setHours(3);
+// console.log(time);
+
+const newMin = time.setMinutes(57);
+// console.log(time);
+
+
+const newMilliSec = time.setMilliseconds(88);
+// console.log(time);
+
+
+
+
+//Some important methods to access the Date and Time 
+//1> used to get date and time
+
+// const time1 = new Date();
+// const localString = time1.toLocaleString();
+// console.log(localString); // format : month/date/year
+
+//2> used to get the date only
+// const time1 = new Date();
+// const localString = time1.toLocaleDateString();
+// console.log(localString);
+
+
+//3> used to get the time only
+// const time1 = new Date();
+// const localString = time1.toLocaleTimeString();
+// console.log(localString);
+
+
+
+//Bonus
+//1> method to get the time in milli seconds
+
+
+// let newDate = new Date();
+// console.log(Date.now());
+
+// console.log(newDate.getTime());
+
+
+
+//Adding days to any date //
+// const addDaysToDate = (date1 , extraDays) => {
+//     date1.setDate(date1.getDate() + extraDays);
+//     return date1;
+// }
+
+
+// let extraDays = 5;
+// let date1 = new Date();
+// const newDate = addDaysToDate(date1 , extraDays);
+// console.log(newDate);
+
+
+
+//Write a function to find out the difference between 2 dates
+// const findDifference = (date1 , date2) => {
+//     let oneDay = 24*60*60*1000;
+//     let diff = date1 - date2 ;
+//     return Math.abs(Math.round(diff/oneDay));
+// }
+
+
+// const date1 = new Date('2026-02-17');
+// const date2 = new Date('2026-01-01');
+
+
+// const diff = findDifference(date1 , date2);
+// console.log(diff);
+
+
+
+//learn about Timing Based Functions
+
+const Time = new Date();
+// console.log(Time.toLocaleTimeString());
+
+const newTime = Time => {
+    let sec = 1000;
+    Time.setTime(Time.getTime() + sec);
+    console.log(Time.toLocaleTimeString());
+}
+setInterval(() => {
+    newTime(Time);
+} , 1000);
