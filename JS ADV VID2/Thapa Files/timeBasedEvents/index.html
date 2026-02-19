@@ -99,16 +99,15 @@
 
     <script>
       const currentTime = () => {
-        let curTime = new Date().toLocaleTimeString();
-        document.getElementById("clock").innerText = curTime;
-      };
+        const curTime = new Date().toLocaleTimeString();
+        document.getElementById('clock').innerHTML = curTime;
+      }
       currentTime();
 
-      const intervalId = setInterval(() => {
-        currentTime();
-      }, 1000);
-
-      setTimeout(() => clearInterval(intervalId), 5000);
+      const intervalID = setInterval(currentTime , 1000);
+      // setTimeout( () => {
+      //   clearInterval(intervalID);
+      // } , 10000);
     </script>
   </body>
 </html>
