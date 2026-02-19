@@ -26,7 +26,7 @@ let person = {
   age: 30,
   "is'Student": false,
   greet: function () {
-    console.log("Welcome to World Best JavaScript Course");
+    // console.log("Welcome to World Best JavaScript Course");
   },
 };
 
@@ -370,5 +370,84 @@ const arrayToObj = (arr) => {
   return obj;
 };
 
-console.log(arrayToObj(inputArray));
+// console.log(arrayToObj(inputArray));
 // Should print: { '1': { id: 1, name: 'Alice' }, '2': { id: 2, name: 'Bob' }, '3': { id: 3, name: 'Charlie' } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Objects Practice 
+
+const product = {
+  id :101 ,
+  name: "Laptop" ,
+  "is\'Working" : true
+}
+
+console.log(product["is'Working"]);
+
+
+
+//Pass by value & pass by reference
+
+
+//--> pass by value mai original value mai change nahi ata only copy provide krte hai methods and functions ko
+
+// let a = 10;
+// const modifyValue = (x) => (x = 20);
+// console.log(modifyValue(a));
+// console.log(a);
+
+//output: 20 , 10
+
+
+//-->> pass by reference mai hum original copy ka access de dete hai
+
+// let obj = {
+//   id:5,
+//   name:"kodifier"
+// }
+
+// obj.name = "Thapa Technical";
+
+// console.log(obj.name);
+// console.log("Original object" , obj);  //original copy mai change
+
+// To avoid this behavior and create a true copy of the object, you can use methods like Object.assign() or the spread operator (...):
+
+//? Object.assign() is used to copy properties from one or more source objects to a target object.
+
+// let obj = { id: 5, name: "kodyfier" };
+// let obj1 = {};
+// let newObj = Object.assign(obj1, obj); //obj1 is a new object in which we are storing the values of obj object
+
+// newObj.name = "thapa technical"; // changes made in new object
+// console.log(newObj); 
+// console.log("original", obj); //there will be no changes in origial object hence known as pass by reference
+
+
+
+
+// does two objects are equal
+
+let obj1 = {name :"Rohit"}
+let obj2 = {name :"Rohit"}
+
+console.log(obj1 == obj2); //false becoz memory adress in different
+
+let obj3 = obj1 ; //passing the address of obj1
+
+console.log(obj1 == obj3); //true
