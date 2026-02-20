@@ -353,22 +353,22 @@ let person = {
 //* ================================================
 //! Problem: Write a function that transforms an array of an objects into an object where the keys are the objects' ids.
 
-let inputArray = [
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
-  { id: 3, name: "Charlie" },
-];
+// let inputArray = [
+//   { id: 1, name: "Alice" },
+//   { id: 2, name: "Bob" },
+//   { id: 3, name: "Charlie" },
+// ];
 
-const arrayToObj = (arr) => {
-  //   console.log(arr[2].id);
-  let obj = {};
-  for (let key of arr) {
-    console.log(key.id, key);
-    obj[key.id] = key;
-    // console.log(key);
-  }
-  return obj;
-};
+// const arrayToObj = (arr) => {
+//   //   console.log(arr[2].id);
+//   let obj = {};
+//   for (let key of arr) {
+//     console.log(key.id, key);
+//     obj[key.id] = key;
+//     // console.log(key);
+//   }
+//   return obj;
+// };
 
 // console.log(arrayToObj(inputArray));
 // Should print: { '1': { id: 1, name: 'Alice' }, '2': { id: 2, name: 'Bob' }, '3': { id: 3, name: 'Charlie' } }
@@ -397,7 +397,7 @@ const product = {
   "is\'Working" : true
 }
 
-console.log(product["is'Working"]);
+// console.log(product["is'Working"]);
 
 
 
@@ -443,11 +443,131 @@ console.log(product["is'Working"]);
 
 // does two objects are equal
 
-let obj1 = {name :"Rohit"}
-let obj2 = {name :"Rohit"}
+// let obj1 = {name :"Rohit"}
+// let obj2 = {name :"Rohit"}
 
-console.log(obj1 == obj2); //false becoz memory adress in different
+// console.log(obj1 == obj2); //false becoz memory adress in different
 
-let obj3 = obj1 ; //passing the address of obj1
+// let obj3 = obj1 ; //passing the address of obj1
 
-console.log(obj1 == obj3); //true
+// console.log(obj1 == obj3); //true
+
+
+
+//  This keyword
+
+function callme (){
+  console.log(this); //output : window
+}
+//and 
+this //<-- it will also give window as output // window is global object
+
+
+
+
+
+//using 'use strict' <<-- need to follow the rules
+
+
+// 'use strict'
+// const obj  = {
+//   name : "Rohit Singh Gouria" ,
+//   age : 21 ,
+//   greet : function() {
+//     console.log(this);
+//   }
+// }
+
+// obj.greet();
+//output {name: 'Rohit Singh Gouria', age: 21, greet: ƒ}
+//undefined
+
+
+
+
+// 'use strict'
+// const obj  = {
+//   name : "Rohit Singh Gouria" ,
+//   age : 21 ,
+//     greet() {
+//     console.log(this);
+//   }
+// }
+
+// obj.greet();
+
+//output {name: 'Rohit Singh Gouria', age: 21, greet: ƒ}
+//undefined
+
+
+
+//Write a function to add a new subject in an student object
+
+
+const stud = {
+  name : "Rohit Singh Gouria" , 
+  branch : "Computer Science Engineering" ,
+  grade : {
+    maths : 91 ,
+    science : 98
+  },
+  result : "Pass"
+}
+const addSubject = (student , newSub , marks) => {
+  if(!student.grade){
+    student.grade = {};
+  }
+  return (student.grade[newSub] = marks);
+}
+const newSub = "Computer_Science" , marks = 92 ;
+addSubject(stud , newSub , marks)
+console.log(stud);
+
+
+//! Problem: Write a function that compares two objects to determine if they have the same properties and values.
+
+
+// Example usage:
+let objA = { name: "Alice", age: 26, city: "New York" };
+let objB = { name: "Alice", age: 26, city: "New York" };
+let objC = { name: "Bob", age: 30, city: "San Francisco" };
+
+
+
+
+const areObjectsEqual = (obj1 , obj2) => {
+  //if(obj1.length !== obj2.length) return false; //undefined bcoz obj.length is not a function
+  let o1 = Object.keys(obj1); // convert the object into array now we can compare on length basis
+  let o2 = Object.keys(obj2); // convert the object into array now we can compare on length basis
+  if(o1.length != o2.length) return false;
+  for(let i=0;i<o1.length;i++){
+    if(obj1[o1[i]] !== obj2[o1[i]]) return false;
+  }
+  return true;
+};
+
+console.log(areObjectsEqual(objA, objB)); // Should return true
+console.log(areObjectsEqual(objA, objC)); // Should return false
+
+//* ===============================================
+//* Interview Question - Object Transformation:
+//* ================================================
+//! Problem: Write a function that transforms an array of an objects into an object where the keys are the objects' ids.
+
+let inputArray = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" },
+];
+
+// const arrayToObj = (arr) => {
+//   let obj = {};
+//   for(let i of arr){
+//     obj[i.id] = i;
+//   }
+//   return obj;
+// }
+
+
+// console.log(arrayToObj(inputArray));
+// Should print: { '1': { id: 1, name: 'Alice' }, '2': { id: 2, name: 'Bob' }, '3': { id: 3, name: 'Charlie' } }
