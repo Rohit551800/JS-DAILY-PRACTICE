@@ -18,7 +18,7 @@ const fun2 = () => {
   }, 2000);
 };
 
-const fun1 = () => {
+const fun1 = async () => {
   console.log("fun1 is start");
   fun2();
   console.log("fun1 ends");
