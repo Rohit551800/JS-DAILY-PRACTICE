@@ -1,4 +1,4 @@
-//* -------------------------
+ //* -------------------------
 //*  Scope in JavaScript
 //* -------------------------
 //? Scope in JavaScript refers to the context in which variables are declared and accessed. It defines the visibility and lifetime of variables. When a variable is declared, it is bound to a specific scope, and its accessibility is determined by that scope.
