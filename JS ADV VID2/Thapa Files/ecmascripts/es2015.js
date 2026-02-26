@@ -212,6 +212,12 @@ const numbers = [10, 20, 30];
 //! Write a program to swap two variables without using 3rd variable?
 let a = 10;
 let b = 30;
+
+// a = a+b;
+// b = a - b;
+// a = a - b;
+
+console.log(a , b);
 // a=30, b=10
 //? Mostly will do using 3rd var
 // let c = b; //c=30
@@ -224,6 +230,7 @@ let b = 30;
 
 //* Destructuring Objects:
 const user = { name: "Vinod", age: 30 };
+
 // we will see the real life use of it in our main project of weather app
 
 //? Extracting properties:
