@@ -23,9 +23,9 @@ const nestedArray1 = [1, [2, [3, [4]]], 5];
 
 //? flatMap() is a new Array instance method that combines flat() with map(). It’s useful when calling a function that returns an array in the map() callback, but you want your resulted array to be flat:
 
-// const arr = ["My name", "is vinod", "thapa"];
-// const newArr = arr.flatMap((curVal) => curVal.split(" "));
-// console.log(newArr);
+const arr = ["My name", "is vinod", "thapa"];
+const newArr = arr.flatMap((curVal) => curVal.split(" "));
+console.log(newArr);
 
 //* ============================
 //*  Object.fromEntries()
