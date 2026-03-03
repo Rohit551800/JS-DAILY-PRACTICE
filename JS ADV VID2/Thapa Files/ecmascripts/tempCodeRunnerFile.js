@@ -1,3 +1,3 @@
-const arr = ["My name", "is vinod", "thapa"];
-const newArr = arr.flatMap((curVal) => curVal.split(" "));
-console.log(newArr);
+const person = { name: "vinod", age: 30 };
+const entries = Object.entries(person);
+console.log(entries);

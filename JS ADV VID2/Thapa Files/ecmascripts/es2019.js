@@ -34,9 +34,9 @@ console.log(newArr);
 //? It returns an array containing all the object own properties, as an array of [key, value] pairs:
 
 //? ES2019 introduces a new Object.fromEntries() method, which can create a new object from such array of properties:
-// const person = { name: "vinod", age: 30 };
-// const entries = Object.entries(person);
-// // console.log(entries);
+const person = { name: "vinod", age: 30 };
+const entries = Object.entries(person);
+console.log(entries);
 
 // const newPerson = Object.fromEntries(entries);
 // console.log(newPerson);
