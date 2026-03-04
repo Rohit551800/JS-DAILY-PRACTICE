@@ -46,3 +46,4 @@ console.log("spliced", splicedArr);
 const replaceWith = myNames.with(2, "thapaTechnical");
 console.log("original", myNames);
 console.log("replaced", replaceWith);
+
