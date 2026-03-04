@@ -60,7 +60,7 @@
     </ul>
     <p id="listValue"></p>
 
-    <script>
+    <!-- <script>
       const getListDetails = (event) => {
         const listItem = event.target;
         listItem.style.transform = "rotateY(360deg)"; // Add a rotation animation
@@ -72,6 +72,18 @@
           "listValue"
         ).innerText = `You fav programming language is: ${listItem.innerText}`;
       };
+      document
+        .getElementById("myList")
+        .addEventListener("click", getListDetails);
+    </script> -->
+
+    <script>
+
+      const getListDetails = (event) => {
+        console.log(event.target);
+        document.getElementById("listValue").innerHTML = event.target.textContent;
+      }
+
       document
         .getElementById("myList")
         .addEventListener("click", getListDetails);

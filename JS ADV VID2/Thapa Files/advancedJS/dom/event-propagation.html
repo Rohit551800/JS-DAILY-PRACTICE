@@ -79,7 +79,7 @@ Handlers registered for the bubbling phase are executed. -->
     </style>
   </head>
   <body>
-    <section>
+    <!-- <section>
       <div id="outer">
         Outer
         <div id="middle">
@@ -135,6 +135,55 @@ Handlers registered for the bubbling phase are executed. -->
       document
         .getElementById("middle")
         .addEventListener("click", callMiddle, true);
-    </script>
+    </script> -->
+
+    <section>
+      <div id="outer">
+        Outer
+        <div id="middle">
+          Middle
+          <div id="inner">
+            Inner
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const callOuter = (event) => {
+        console.table([{
+          Description : "I am the outer one" , 
+          Target : event.Target ,
+          CurrentTarget : event.CurrentTarget
+        }
+      ]);
+      };
+      const callMiddle = (event) => {
+        console.table([{
+          Description : "I am the middle one" , 
+          Target : event.Target ,
+          CurrentTarget : event.CurrentTarget
+        }
+      ]);
+      };
+      const callInner = (event) => {
+        console.table([{
+          Description : "I am the inner one" , 
+          Target : event.Target ,
+          CurrentTarget : event.CurrentTarget
+        }       
+      ]);
+      // event.stopPropagation(); isse target portion hi call hoga baki sb parent pe travel nahi krne dega event
+      };
+
+
+      // document.getElementById("outer").addEventListener('click' , callOuter);
+      // document.getElementById("middle").addEventListener('click' , callMiddle);
+      // document.getElementById("inner").addEventListener('click', callInner);
+
+
+      document.getElementById("outer").addEventListener('click' , callOuter , true);
+      document.getElementById("middle").addEventListener('click' , callMiddle , true);
+      document.getElementById("inner").addEventListener('click', callInner , true);
+    </script>;
   </body>
 </html>
