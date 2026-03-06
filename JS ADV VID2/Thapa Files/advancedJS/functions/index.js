@@ -15,7 +15,11 @@
 
 // // // Using the variable as a function
 // console.log(greetFunction("Thapa"));
-
+function sum(a , b){
+  return a + b;
+}
+const result = sum;  //storingfunction in a variable this is known as first class function
+console.log(result(5 , 7));
 //* -------------------------------
 //*  Higher-Order Functions:
 //* -------------------------------
@@ -42,6 +46,28 @@
 
 // processUserInput is a higher-order function because it takes another function (callback) as an argument.
 // greetUser is a callback function because it's passed as an argument to processUserInput and gets executed after the completion of the main task
+
+
+
+
+// Passing function as and argument to another function
+
+const multiply = (sum , div) => {
+  let a = sum(5 , 7);
+  let b = div(36 , 6);
+  return a * b;
+}
+
+const sum = (a , b) => {
+  return a + b;
+}
+const div = (a , b)=>{
+  return a / b ;
+}
+
+console.log(sum(5 , 7));
+console.log(div(36 , 6));
+console.log(multiply(sum , div));
 
 //* -------------------------------
 //*  Closure:
