@@ -14,6 +14,7 @@
 
 //? Promises have built-in methods like then and catch to handle the results of asynchronous operations when they complete or encounter errors, making it easier to write asynchronous code that is more readable and maintainable compared to traditional callback-based approaches.
 
+
 //* ==========================================
 //* Using the Promise Constructor (Class):
 //* ==========================================
