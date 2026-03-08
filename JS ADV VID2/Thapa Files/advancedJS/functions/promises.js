@@ -46,21 +46,17 @@
 //   });
 // }
 
-// const pr = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     reject("Sorry, I can't");
-//   }, 2000);
-// })
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   })
-//   .finally(() => {
-//     console.log("Don't worry, We all miss you and keep smiling");
-//   });
-
+const promise = new Promise((response , reject) => {
+  setTimeout(() => {
+    response("Hello world");
+  } , 3000);
+}).then((res) => {
+  console.log(res);
+}).catch((err) =>{
+  console.log(err);
+}).finally(() => {
+  console.log("World Hello");
+});
 // 1: By default promise has the pending state
 // 2: the moment we use setTimeout, we need to handle promises, we can do using then and catch
 
@@ -80,59 +76,50 @@
 // The then method is used to handle the success case, printing a success message.
 // The catch method is used to handle the failure case, printing an error message.
 // The finally method is used to print a message indicating the completion of the enrollment process, whether successful or not.
+const studentName = "Rohit Singh Gouria";
+const enrollStudent = studentName => {
+  return new Promise ((response , reject) =>{
+    setTimeout(() => {
+      const marks = Math.random() > 0.4 ;
+      if(marks) response("Enrollement Sucessful for " + studentName);
+      else reject("Enrollement failed for " + studentName + " Please try again ....!");
+    } , 3000);
+  });
+};
 
-// Example usage:
-// const studentName = "Vinod";
+enrollStudent(studentName).then((res) => {
+  console.log(res);
+}).catch((err) => {
+  console.log(err);
+}).finally(() => {
+  console.log("Result of enrollement is memtioned above");
+})
 
-// const enrollStudent = (studentName) => {
-//   return new Promise((resolve, reject) => {
-//     // Simulating asynchronous enrollment process
-//     setTimeout(() => {
-//       const isSuccessful = Math.random() > 0.4;
 
-//       if (isSuccessful) {
-//         resolve(`Enrollment successful for ${studentName}`);
-//       } else {
-//         reject(`Enrollment failed for ${studentName}. Please try again.`);
-//       }
-//     }, 2000);
-//   });
-// };
 
-// enrollStudent(studentName)
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-//   .finally(() => {
-//     console.log("Enrollment process completed.");
-//   });
+
+// const promise2 = new Promise((resolve) =>
+  //   setTimeout(() => resolve("Second"), 5000)
+// );
 
 const promise1 = new Promise((resolve, reject) =>
   setTimeout(() => resolve("First"), 2000)
 );
-
-// const promise2 = new Promise((resolve) =>
-//   setTimeout(() => resolve("Second"), 5000)
-// );
-
 const promise2 = new Promise((resolve, reject) =>
-  setTimeout(() => reject("Failed"), 100)
+  setTimeout(() => resolve("Second"), 100)
 );
 
 const promise3 = new Promise((resolve) =>
   setTimeout(() => resolve("Third"), 1000)
 );
 
-// Promise.all([promise1, promise3, promise2])
-//   .then((values) => {
-//     console.log(values);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+Promise.all([promise1, promise3, promise2])
+  .then((values) => {
+    console.log(values);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 // Promise.allSettled([promise1, promise2, promise3])
 //   .then((values) => {

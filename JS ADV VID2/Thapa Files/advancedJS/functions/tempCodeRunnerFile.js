@@ -1,15 +1,18 @@
-const sum = (a , b) => {
-  return Math.sum(a,b);
-}
-const div = (a , b)=>{
-  return Math.div(a,b) ;
-}
-const multiply = (sum , div) => {
-  let a = sum(5 , 7);
-  let b = div(36 , 6);
-  return Math.multiply(a,b);
-}
+const promise1 = new Promise((resolve, reject) =>
+  setTimeout(() => resolve("First"), 2000)
+);
+const promise2 = new Promise((resolve, reject) =>
+  setTimeout(() => resolve("Second"), 100)
+);
 
-console.log(sum(5 , 7));
-console.log(div(36 , 6));
-console.log(multiply(sum , div));
+const promise3 = new Promise((resolve) =>
+  setTimeout(() => resolve("Third"), 1000)
+);
+
+Promise.all([promise1, promise3, promise2])
+  .then((values) => {
+    console.log(values);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
